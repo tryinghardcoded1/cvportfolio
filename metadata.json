@@ -1,0 +1,5 @@
+{
+  "name": "cvportfolio",
+  "description": "A high-end, vertical scrolling React component using Tailwind CSS and Framer Motion with Sticky Stacking and Glassmorphic Bento design.",
+  "requestFramePermissions": []
+}
