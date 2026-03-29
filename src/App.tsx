@@ -39,6 +39,12 @@ const PROJECTS = [
     category: "Business Tools",
     description: "Web application streamlining virtual assistant hiring.",
     image: "https://djautofleet.com/wp-content/uploads/2026/03/hireava-scaled.png",
+  },
+  {
+    title: "ROI ADS CALCULATOR",
+    category: "Business Tools",
+    description: "Interactive tool to calculate and project ad campaign returns.",
+    image: "https://djautofleet.com/wp-content/uploads/2026/03/ad-roi-calculator.png",
   }
 ];
 

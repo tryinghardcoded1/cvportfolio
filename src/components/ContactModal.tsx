@@ -15,24 +15,40 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     inquiry: 'Web Dev'
   });
 
-  const handleSubmit = (e: FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Construct the email subject and body
-    const subject = encodeURIComponent(`New Inquiry: ${formData.inquiry} from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `WhatsApp: ${formData.whatsapp}\n` +
-      `Inquiry Type: ${formData.inquiry}\n\n` +
-      `Message:\n`
-    );
-    
-    // Open the user's default email client
-    window.location.href = `mailto:cerezvincent1@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Close the modal after submission
-    onClose();
+    try {
+      await fetch("https://formsubmit.co/ajax/cerezvincent1@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            whatsapp: formData.whatsapp,
+            inquiry: formData.inquiry,
+            _subject: `New Inquiry: ${formData.inquiry} from ${formData.name}`
+        })
+      });
+      
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsSuccess(false);
+        setFormData({ name: '', email: '', whatsapp: '', inquiry: 'Web Dev' });
+        onClose();
+      }, 2000);
+    } catch (error) {
+      console.error("Error submitting form", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -111,9 +127,10 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 </div>
                 <button 
                   type="submit" 
-                  className="w-full bg-white text-black font-semibold rounded-lg px-4 py-4 mt-6 hover:bg-white/90 transition-colors"
+                  disabled={isSubmitting || isSuccess}
+                  className="w-full bg-white text-black font-semibold rounded-lg px-4 py-4 mt-6 hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : isSuccess ? 'Sent Successfully!' : 'Send Message'}
                 </button>
               </form>
             </div>
