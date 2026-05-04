@@ -9,7 +9,7 @@ const stats = [
 
 export function ProofStrip() {
   return (
-    <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-center justify-center py-16 border-y border-white/10 bg-white/[0.02] backdrop-blur-md w-[80vw] mx-auto rounded-3xl">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
       {stats.map((stat, i) => (
         <StatItem key={i} {...stat} />
       ))}
@@ -27,7 +27,7 @@ function StatItem({ label, value, prefix, suffix }: any) {
       let start = 0;
       const end = value;
       const duration = 2000;
-      const incrementTime = (duration / end);
+      const incrementTime = Math.max(duration / (end || 1), 16);
       
       const timer = setInterval(() => {
         start += 1;
@@ -40,11 +40,11 @@ function StatItem({ label, value, prefix, suffix }: any) {
   }, [isInView, value]);
 
   return (
-    <div ref={ref} className="flex flex-col items-center text-center">
-      <span className="text-5xl md:text-7xl font-bold text-white tracking-tighter mb-2">
+    <div ref={ref} className="bg-white/[0.02] border border-white/5 rounded-[32px] p-8 flex flex-col items-center justify-center text-center group hover:bg-white/[0.04] transition-colors">
+      <span className="text-5xl md:text-6xl font-bold text-white tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-500">
         {prefix}{count}{suffix}
       </span>
-      <span className="text-white/50 uppercase tracking-widest text-sm font-semibold">{label}</span>
+      <span className="text-white/30 uppercase tracking-[0.2em] text-[10px] font-bold">{label}</span>
     </div>
   );
 }

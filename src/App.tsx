@@ -5,7 +5,7 @@ import { FakePopup } from './components/FakePopup';
 import { LiveDemoCard } from './components/LiveDemoCard';
 import { ProofStrip } from './components/ProofStrip';
 import { ContactModal } from './components/ContactModal';
-import { ArrowRight, ArrowDown } from 'lucide-react';
+import { ArrowRight, Sparkles, Globe, Brain, Zap, Layout, Code2, Database } from 'lucide-react';
 
 const CATEGORIES = ["All", "Web Development", "Business Tools", "AI Automation"];
 
@@ -15,36 +15,42 @@ const PROJECTS = [
     category: "Web Development",
     description: "High-converting web development driving 3x more leads.",
     image: "https://djautofleet.com/wp-content/uploads/2026/03/OGbullet-1-scaled.png",
-  },
-  {
-    title: "Local Kush Dealer",
-    category: "Web Development",
-    description: "E-commerce platform optimized for seamless transactions.",
-    image: "https://djautofleet.com/wp-content/uploads/2026/03/localkushdealer-2-scaled.png",
-  },
-  {
-    title: "Legit ID CHECKER",
-    category: "Business Tools",
-    description: "Business tool automating verification processes.",
-    image: "https://djautofleet.com/wp-content/uploads/2026/03/Legit-ID-CHECKER-App-1-scaled.png",
+    className: "md:col-span-8 md:row-span-2",
   },
   {
     title: "AI RECEPTIONIST",
     category: "AI Automation",
     description: "24/7 automated call handling and appointment booking.",
     image: "https://djautofleet.com/wp-content/uploads/2026/03/Ai-Receptionist.png",
+    className: "md:col-span-4 md:row-span-2",
   },
   {
-    title: "HIRE A VA",
-    category: "Business Tools",
-    description: "Web application streamlining virtual assistant hiring.",
-    image: "https://djautofleet.com/wp-content/uploads/2026/03/hireava-scaled.png",
+    title: "Local Kush Dealer",
+    category: "Web Development",
+    description: "E-commerce platform optimized for seamless transactions.",
+    image: "https://djautofleet.com/wp-content/uploads/2026/03/localkushdealer-2-scaled.png",
+    className: "md:col-span-4 md:row-span-1",
   },
   {
     title: "ROI ADS CALCULATOR",
     category: "Business Tools",
     description: "Interactive tool to calculate and project ad campaign returns.",
     image: "https://djautofleet.com/wp-content/uploads/2026/03/ad-roi-calculator.png",
+    className: "md:col-span-4 md:row-span-1",
+  },
+  {
+    title: "Legit ID CHECKER",
+    category: "Business Tools",
+    description: "Business tool automating verification processes.",
+    image: "https://djautofleet.com/wp-content/uploads/2026/03/Legit-ID-CHECKER-App-1-scaled.png",
+    className: "md:col-span-4 md:row-span-1",
+  },
+  {
+    title: "HIRE A VA",
+    category: "Business Tools",
+    description: "Web application streamlining virtual assistant hiring.",
+    image: "https://djautofleet.com/wp-content/uploads/2026/03/hireava-scaled.png",
+    className: "md:col-span-12 md:row-span-2",
   }
 ];
 
@@ -55,109 +61,151 @@ export default function App() {
   const filteredProjects = PROJECTS.filter(p => activeCategory === "All" || p.category === activeCategory);
 
   return (
-    <div className="bg-[#0a0a0a] text-white min-h-screen overflow-x-hidden selection:bg-white/20 font-sans">
+    <div className="bg-[#0a0a0a] text-white min-h-screen selection:bg-white/20 font-sans relative overflow-hidden">
       <CustomCursor />
       <FakePopup />
       <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
 
-      {/* Fixed Background Blobs */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
-        <motion.div 
-          animate={{ 
-            x: [0, 100, 0], 
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-br from-white/5 to-transparent blur-[120px]"
-        />
-        <motion.div 
-          animate={{ 
-            x: [0, -100, 0], 
-            y: [0, 50, 0],
-            scale: [1, 1.5, 1]
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-tl from-white/5 to-transparent blur-[150px]"
-        />
-      </div>
+      {/* Grid Pattern Background */}
+      <div className="fixed inset-0 z-0 opacity-[0.03] bg-grid pointer-events-none" />
+      
+      {/* Glow Effects */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-white/5 blur-[120px] rounded-full pointer-events-none z-0" />
+      <div className="fixed -bottom-40 left-0 w-[500px] h-[500px] bg-white/5 blur-[100px] rounded-full pointer-events-none z-0" />
 
-      {/* Main Vertical Scroll Container */}
-      <div className="flex flex-col w-full relative z-10">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-32">
         
-        {/* Section 1: Hero */}
-        <section className="min-h-screen w-full flex flex-col justify-center relative px-6 md:px-24 py-24">
-          <LiveDemoCard />
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-5xl mt-20 md:mt-0"
-          >
-            <motion.h1 
-              initial={{ letterSpacing: "0.05em" }}
-              animate={{ letterSpacing: "-0.02em" }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-8 leading-[1.1]"
-            >
-              I Build Things <br />
-              <span className="text-white/50">That Actually Work</span>
-            </motion.h1>
-            
-            <p className="text-lg md:text-3xl text-white/60 font-light max-w-3xl leading-relaxed mb-12">
-              Web apps, AI tools, and high-converting websites designed to perform — not just look good.
-            </p>
+        {/* Navigation / Header */}
+        <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center py-6 pointer-events-none">
+          <div className="pointer-events-auto bg-black/50 backdrop-blur-md border border-white/10 px-6 py-2 rounded-full flex items-center gap-8">
+            <span className="text-sm font-bold tracking-tighter">CV CREATION</span>
+            <div className="flex items-center gap-6">
+              <a href="#work" className="text-xs text-white/50 hover:text-white transition-colors uppercase tracking-widest">Work</a>
+              <a href="#about" className="text-xs text-white/50 hover:text-white transition-colors uppercase tracking-widest">About</a>
+              <button 
+                onClick={() => setIsContactModalOpen(true)}
+                className="text-xs font-bold bg-white text-black px-4 py-1.5 rounded-full hover:bg-white/90 transition-all"
+              >
+                Let's Talk
+              </button>
+            </div>
+          </div>
+        </nav>
 
+        {/* Hero Section */}
+        <section className="flex flex-col items-center text-center pt-20 pb-32 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full mb-8"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-white/50 fill-white/50" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white/50">Modern Digital Systems</span>
+          </motion.div>
+
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-6xl md:text-[112px] font-bold tracking-tight leading-[0.9] mb-8"
+          >
+            I Build Things <br />
+            <span className="text-white/30 text-glow">That Actually Work</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="text-lg md:text-2xl text-white/50 max-w-2xl font-light leading-relaxed mb-12"
+          >
+            High-converting web apps, AI automation tools, and performance-driven websites for forward-thinking brands.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="flex flex-col md:flex-row items-center gap-4"
+          >
             <button 
-              onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-              className="hover-trigger group relative px-8 py-4 bg-white text-black rounded-full font-semibold text-lg overflow-hidden transition-transform hover:scale-105"
+              onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-4 bg-white text-black rounded-full font-bold text-lg hover:scale-105 transition-transform"
             >
-              <div className="absolute inset-0 bg-white/20 blur-md group-hover:bg-white/40 transition-colors" />
-              <span className="relative z-10 flex items-center gap-2">
-                View My Work <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-              </span>
+              Explore Solutions
+            </button>
+            <button 
+               onClick={() => setIsContactModalOpen(true)}
+              className="px-8 py-4 bg-white/5 border border-white/10 rounded-full font-bold text-lg hover:bg-white/10 transition-colors"
+            >
+              Contact Me
             </button>
           </motion.div>
 
-          <div className="absolute bottom-12 left-6 md:left-24 flex flex-col items-center gap-4 text-white/40">
-            <span className="text-xs font-medium tracking-widest uppercase" style={{ writingMode: 'vertical-rl' }}>Scroll</span>
-            <div className="w-[1px] h-12 bg-white/20 relative overflow-hidden">
-              <motion.div 
-                animate={{ y: ["-100%", "100%"] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 bg-white"
-              />
+          <div className="mt-24 w-full">
+            <LiveDemoCard />
+          </div>
+        </section>
+
+        {/* Info Grid (Bento Style) */}
+        <section id="about" className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-32">
+          <div className="md:col-span-8 bg-white/[0.02] border border-white/5 rounded-[32px] p-12 flex flex-col justify-end min-h-[400px] relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-full h-full bg-dot-grid mask-radial opacity-20 group-hover:opacity-30 transition-opacity" />
+            <div className="relative z-10">
+              <h3 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Revenue-First Engineering</h3>
+              <p className="text-white/40 text-lg md:text-xl font-light leading-relaxed max-w-2xl">
+                I don’t just build websites. I build integrated digital systems that automate lead generation and capture revenue 24/7.
+              </p>
             </div>
           </div>
-        </section>
 
-        {/* Section 2: About & Proof */}
-        <section className="min-h-screen w-full flex flex-col justify-center items-center relative px-6 md:px-24 py-24">
-          <div className="max-w-5xl text-center mb-20">
-            <h2 className="text-4xl md:text-7xl font-bold tracking-tighter leading-tight mb-8">
-              I don’t just build websites. <br />
-              <span className="text-white/40">I build systems that generate revenue.</span>
-            </h2>
+          <div className="md:col-span-4 bg-white/[0.02] border border-white/5 rounded-[32px] p-8 flex flex-col gap-6 ">
+             <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex items-center gap-4 group">
+                <Brain className="w-8 h-8 text-white/50 group-hover:text-white transition-colors" />
+                <div>
+                   <h4 className="font-bold">AI Native</h4>
+                   <p className="text-xs text-white/40">Automating the mundane</p>
+                </div>
+             </div>
+             <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex items-center gap-4 group">
+                <Layout className="w-8 h-8 text-white/50 group-hover:text-white transition-colors" />
+                <div>
+                   <h4 className="font-bold">High Conversion</h4>
+                   <p className="text-xs text-white/40">Optimized UX for sales</p>
+                </div>
+             </div>
+             <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex items-center gap-4 group">
+                <Zap className="w-8 h-8 text-white/50 group-hover:text-white transition-colors" />
+                <div>
+                   <h4 className="font-bold">Fast Delivery</h4>
+                   <p className="text-xs text-white/40">Market-ready in weeks</p>
+                </div>
+             </div>
           </div>
-          <ProofStrip />
+
+          <div className="md:col-span-12">
+            <ProofStrip />
+          </div>
         </section>
 
-        {/* Section 3: Projects */}
-        <section className="min-h-screen w-full flex flex-col justify-center px-6 md:px-24 py-24">
-          <div className="mb-16">
-            <h2 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8">Selected <br className="hidden md:block"/>Work</h2>
+        {/* Project Bento Grid */}
+        <section id="work" className="mb-32">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
+            <div>
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Selected work</h2>
+              <p className="text-white/40 max-w-md font-light">A curated list of high-impact digital products and automation systems.</p>
+            </div>
             
-            {/* Category Filter */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex items-center gap-2 p-1 bg-white/5 rounded-full border border-white/10">
               {CATEGORIES.map(category => (
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover-trigger ${
+                  className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${
                     activeCategory === category 
                       ? 'bg-white text-black' 
-                      : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/10'
+                      : 'text-white/40 hover:text-white'
                   }`}
                 >
                   {category}
@@ -165,81 +213,97 @@ export default function App() {
               ))}
             </div>
           </div>
-          
-          <motion.div 
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
+
+          <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[300px] md:auto-rows-[400px] gap-4">
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project) => (
-                <motion.div 
+              {filteredProjects.map((project, i) => (
+                <motion.div
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
-                  key={project.title} 
-                  className="h-[400px] md:h-[500px] group relative rounded-3xl overflow-hidden hover-trigger cursor-pointer border border-white/10"
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.8, delay: i * 0.05 }}
+                  key={project.title}
+                  className={`${project.className || 'md:col-span-4 md:row-span-1'} relative rounded-[32px] overflow-hidden group border border-white/5 hover:border-white/20 transition-all`}
                 >
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
+                    className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <div className="absolute inset-0 p-8 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="text-xs font-bold uppercase tracking-wider text-white/50 mb-3">{project.category}</span>
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight">{project.title}</h3>
-                    <p className="text-base text-white/80 mb-6 max-w-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{project.description}</p>
-                    <div className="flex items-center gap-2 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                      View Project <ArrowRight className="w-5 h-5" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-2">{project.category}</span>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2">{project.title}</h3>
+                    <p className="text-sm text-white/40 font-light max-w-xs">{project.description}</p>
+                    <div className="mt-6 flex items-center gap-2 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+                      Visit Project <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
                 </motion.div>
               ))}
             </AnimatePresence>
-          </motion.div>
+          </div>
         </section>
 
-        {/* Section 4: Skills & Final CTA */}
-        <section className="min-h-screen w-full flex flex-col justify-center items-center relative px-6 md:px-24 py-24 text-center">
-          
-          <div className="mb-24">
-            <h3 className="text-white/40 uppercase tracking-widest text-sm font-semibold mb-8">Core Stack</h3>
-            <div className="flex flex-wrap justify-center gap-4 max-w-3xl">
-              {["AI Automation", "Web Apps", "APIs", "Integrations", "SEO"].map((skill) => (
-                <motion.div
-                  key={skill}
-                  whileHover={{ scale: 1.05, rotate: Math.random() * 4 - 2 }}
-                  className="px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 text-white/80 text-lg font-medium hover:bg-white/10 hover:border-white/30 transition-colors cursor-default hover-trigger"
-                >
-                  {skill}
-                </motion.div>
-              ))}
-            </div>
+        {/* Capabilities Grid */}
+        <section className="mb-32">
+          <div className="text-center max-w-3xl mx-auto mb-24">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8">Engineering Stack</h2>
+            <p className="text-white/40 text-lg font-light leading-relaxed">
+              Leveraging the most powerful modern tools to build stable, scalable, and beautifully designed digital products.
+            </p>
           </div>
 
-          <h2 className="text-5xl md:text-8xl font-bold tracking-tighter mb-12">
-            Let’s Build Something <br />
-            <span className="text-white/40">That Works</span>
-          </h2>
-
-          <button 
-            onClick={() => setIsContactModalOpen(true)}
-            className="hover-trigger group relative px-12 py-6 bg-white text-black rounded-full font-bold text-xl md:text-2xl overflow-hidden transition-transform hover:scale-105 mb-8"
-          >
-            <div className="absolute inset-0 bg-white/20 blur-md group-hover:bg-white/40 transition-colors" />
-            <span className="relative z-10">Get In Touch</span>
-          </button>
-
-          <a href="tel:+17867518929" className="text-white/50 hover:text-white transition-colors text-xl font-light hover-trigger">
-            +1 (786) 751 8929
-          </a>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {[
+              { icon: <Code2 className="w-6 h-6" />, title: "Full-Stack Dev", desc: "Next.js, TypeScript, React" },
+              { icon: <Brain className="w-6 h-6" />, title: "AI Integration", desc: "OpenAI, LangChain, Anthropic" },
+              { icon: <Database className="w-6 h-6" />, title: "Backend Systems", desc: "Node.js, PostgreSQL, Supabase" },
+              { icon: <Globe className="w-6 h-6" />, title: "Automation", desc: "Make.com, n8n, Custom APIs" }
+            ].map((item, i) => (
+              <div key={i} className="bg-white/[0.02] border border-white/5 rounded-[32px] p-8 hover:bg-white/[0.04] transition-colors group">
+                <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-6 text-white/50 group-hover:text-white transition-colors group-hover:scale-110 duration-300">
+                  {item.icon}
+                </div>
+                <h4 className="text-xl font-bold mb-2">{item.title}</h4>
+                <p className="text-sm text-white/40 font-light">{item.desc}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
-      </div>
+        {/* Footer CTA */}
+        <section className="bg-white/[0.02] border border-white/5 rounded-[48px] p-12 md:p-24 text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-grid opacity-[0.03] pointer-events-none" />
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-[80px] font-bold tracking-tight leading-none mb-12">
+              Ready to scale <br />
+              <span className="text-white/30">your operations?</span>
+            </h2>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+              <button 
+                onClick={() => setIsContactModalOpen(true)}
+                className="px-12 py-6 bg-white text-black rounded-full font-bold text-xl hover:scale-105 transition-transform"
+              >
+                Let’s Start a Project
+              </button>
+              <a href="tel:+17867518929" className="px-12 py-6 bg-white/5 border border-white/10 rounded-full font-bold text-xl hover:bg-white/10 transition-colors">
+                +1 (786) 751 8929
+              </a>
+            </div>
+            <p className="mt-12 text-white/30 text-xs font-bold uppercase tracking-[0.3em]">Available for selected 2024 projects</p>
+          </div>
+        </section>
+
+        <footer className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 opacity-30 text-xs font-bold uppercase tracking-widest">
+           <span>© 2024 CV CREATION</span>
+           <div className="flex items-center gap-8">
+              <span>Based in US</span>
+              <span>EST Timezone</span>
+           </div>
+        </footer>
+
+      </main>
     </div>
   );
 }
